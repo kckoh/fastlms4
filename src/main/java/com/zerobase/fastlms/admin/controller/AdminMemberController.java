@@ -5,6 +5,8 @@ import com.zerobase.fastlms.admin.dto.MemberDto;
 import com.zerobase.fastlms.admin.model.MemberParam;
 import com.zerobase.fastlms.admin.model.MemberInput;
 import com.zerobase.fastlms.course.controller.BaseController;
+import com.zerobase.fastlms.logHistory.LogHistoryDto;
+import com.zerobase.fastlms.logHistory.service.LogHistoryService;
 import com.zerobase.fastlms.member.service.MemberService;
 import com.zerobase.fastlms.util.PageUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +22,8 @@ import java.util.List;
 public class AdminMemberController extends BaseController {
     
     private final MemberService memberService;
-    
+    private final LogHistoryService logHistoryService;
+
     @GetMapping("/admin/member/list.do")
     public String list(Model model, MemberParam parameter) {
         
@@ -37,7 +40,7 @@ public class AdminMemberController extends BaseController {
         model.addAttribute("list", members);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("pager", pagerHtml);
-        
+
         return "admin/member/list";
     }
     
@@ -47,8 +50,11 @@ public class AdminMemberController extends BaseController {
         parameter.init();
         
         MemberDto member = memberService.detail(parameter.getUserId());
+        List<LogHistoryDto> logHistoryList = logHistoryService.list(member);
+
         model.addAttribute("member", member);
-       
+        model.addAttribute("logHistoryList", logHistoryList);
+
         return "admin/member/detail";
     }
     
