@@ -8,6 +8,6 @@ import java.util.List;
 public interface LogHistoryService {
     void add(Member member, HttpServletRequest request);
 
-    List<LogHistoryDto> list(Member member);
+    List<LogHistoryDto> list(String memberId);
 
 }

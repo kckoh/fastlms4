@@ -1,5 +1,6 @@
 package com.zerobase.fastlms.logHistory.service.impl;
 
+import com.zerobase.fastlms.logHistory.LogHistoryDto;
 import com.zerobase.fastlms.logHistory.entity.LogHistory;
 import com.zerobase.fastlms.logHistory.repository.LogHistoryRepository;
 import com.zerobase.fastlms.logHistory.service.LogHistoryService;
@@ -10,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -35,8 +36,15 @@ public class LogHistoryServiceImpl implements LogHistoryService {
     }
 
     @Override
-    public void list(Member member) {
-        List<LogHistory> logHistories = logHistoryRepository.findAllByUserId(member.getUserId());
-        log.info(logHistories.toString());
+    public List<LogHistoryDto> list(String memberId) {
+        List<LogHistory> logHistories = logHistoryRepository.findAllByUserId(memberId);
+        List<LogHistoryDto> logHistoryDtoList = new ArrayList<>();
+
+        logHistories.forEach(x -> logHistoryDtoList.add(
+                LogHistoryDto.of(x)
+        ));
+
+        log.info(logHistoryDtoList.toString());
+        return logHistoryDtoList;
     }
 }

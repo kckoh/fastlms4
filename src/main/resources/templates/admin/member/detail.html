@@ -101,6 +101,41 @@
 
         </div>
 
+        <table>
+            <thead>
+            <tr>
+
+                <th> NO </th>
+                <th>
+                로그인 일자
+                </th>
+
+                <th>
+                    접속 IP
+                </th>
+                <th>
+                    접속 UserAgent
+                </th>
+            </tr>
+            </thead>
+            <tbody id="dataLIst">
+            <tr th:each="x : ${logHistoryList}">
+                <td th:text="${x.id}">1</td>
+                <td>
+                    <p>
+                        <a th:text="${x.loggedInTime}">강좌명</a>
+                    </p>
+                </td>
+                <td>
+                    <p th:text="${x.ip}">IP</p>
+                </td>
+                <td>
+                    <p th:text="${x.userAgent}">user Agent</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
 
     </div>
 
