@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        td, th {
+            border: 1px solid #000000;
+        }
+
+         .addSelectBanner a{
+            border-width: 0;
+            background-color: transparent;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 20px;
+            height: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+<h1>배너 관리 - 배너 등록</h1>
+<table>
+    <tr>
+        <th>배너명</th>
+        <th><input placeholder="배너명 입력"></th>
+    </tr>
+    <tr>
+        <th>
+            배너 파일
+        </th>
+        <th>
+            <form action="">
+                <input type="file" name="filename">
+            </form>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            링크 주소
+        </th>
+        <th>
+            <input placeholder="링크 주소 입력">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            오픈 방법
+        </th>
+        <th>
+            <select name="openOption">
+                <option value="newTab">새창</option>
+                <option value="currentTab">현재창</option>
+            </select>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            정렬 순서
+        </th>
+        <th>
+            <input placeholder="정렬 순서 입력">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            공개 여부
+        </th>
+        <th>
+            <input type="checkbox"> <span> 공개여부</span>
+
+        </th>
+    </tr>
+
+
+</table>
+<div class="addSelectBanner">
+
+    <a href="#"> 배너 등록</a>
+    <a href="/admin/banner/list.do"> 목록 이동</a>
+</div>
+</body>
+</html>
